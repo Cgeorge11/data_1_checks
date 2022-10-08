@@ -29,8 +29,12 @@ av_pop = df["Population"].mean()
 #Q = df.query(df(["Population"]>322903031) & (df(["Year"] < 2019)))---Why didn't this work? Cast as a int but still was read as int. 
 Q = df.query('Population ==' +str( max_pop))
 
-inx = df.iloc[:,[2,3]]
+#printing the SECOND AND THIRD columns of dataframe 
+inx_cols = df.iloc[:,[2,3]]
 
+#Print first 4 rows
+
+prows = df.loc[0:4]
 
 #Print stuff
 print( "Data USA Table\n")
@@ -46,8 +50,8 @@ print("\n")
 print("Result of Query:\n" + str(Q))
 
 print("\n")
-print("Printing the 2nd & 3rd columns of the table \n" + str(inx))
-
+print("Printing the 2nd & 3rd columns of the table \n" + str(inx_cols))
+print(prows)
 
 
 
