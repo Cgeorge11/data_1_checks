@@ -1,10 +1,8 @@
 #Import library for HTTP requests
-from posixpath import split
+import numpy as np
 import requests as req
 #Import pandas to structure 
 import pandas as pd
-
-import math
 
 #set variable for where data will be requested from
 
@@ -16,12 +14,20 @@ x =usa_request.json()
 # Create structure data using pandas that makes data more readable 
 df = pd.DataFrame(x["data"])
 
-#Count columns and rows
+#Getting headers in a list
+headers= list(df)
 
+#Count columns and rows
 count_cols = len(df.axes[1])
 count_rows = len(df.axes[0])
 
-headers= list(df)
+#Max value of pop column 
+max_pop = df["Population"].max()
+av_pop = df["Population"].mean()
+
+#Query 
+#Q = df.query(df(["Population"]>322903031) & (df(["Year"] < 2019)))---Why didn't this work? Cast as a int but still was read as int. 
+Q = df.query('Population ==' +str( max_pop))
 
 
 #Print stuff
@@ -30,10 +36,13 @@ print( "Data USA Table\n")
 print(df)
 print("\n")
 
-print("Headers in Data USA Table" + headers)
-print("Number of columns in table: " +count_cols)
-print("Number of rows in table: " + count_rows)
+print("Headers in Data USA Table" + str(headers))
+print("Number of columns in table: " + str(count_cols))
+print("Number of rows in table: " + str(count_rows))
+print("The max pop was: " + str(max_pop))
+print ("The average pop was: " + str(av_pop))
 
+print("Result of Query:\n" + str(Q))
 
 
 
