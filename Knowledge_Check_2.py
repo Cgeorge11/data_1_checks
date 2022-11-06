@@ -14,18 +14,21 @@ print("Record count per column:", df.count())
 # Gross column is empty. Column will be dropped 
 print('Data after cleaning')
 
-def clean_col():
+#Funtion for cleaning
+def clean_df():
     #Remove gross column
     df.pop('Gross')
     #Remove rows with nan or empty
-    new_df = df.dropna()
-
-    print(new_df)
-    print("Record count per column:", new_df.count())
+    #df.dropna(inplace = True)
+    # remove duplicates; the inplace =True makes the changes to the orginal dataframe vs a creating a new one
+    df.drop_duplicates(inplace = True) 
     
-clean_col()
+    #Display dataframe 
+    print(df)
+    print("Record count per column:", df.count())
 
-
+#Calling function     
+clean_df()
 
 
 
